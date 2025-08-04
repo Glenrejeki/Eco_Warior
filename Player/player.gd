@@ -1,18 +1,20 @@
 extends CharacterBody2D
 
-var respawn_position : Vector2
+var respawn_position: Vector2
 const SPEED = 300.0
 const RUN_SPEED = 900.0
 const JUMP_VELOCITY = -400.0
 
-@onready var anim = get_node("AnimatedSprite2D")
+@onready var anim = $AnimatedSprite2D
 @onready var sfx_jump: AudioStreamPlayer = $sfx_jump
+
+var is_attacking = false
 
 func _ready() -> void:
 	respawn_position = global_position
 
 func _physics_process(delta: float) -> void:
-	# ✅ Countdown waktu
+	# ⏱ Timer batas waktu
 	if Game.batas_waktu > 0:
 		Game.batas_waktu -= delta
 		if Game.batas_waktu <= 0:
@@ -20,30 +22,30 @@ func _physics_process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://kehabisan_nyawa.tscn")
 			return
 
-	# ✅ Cek jika player jatuh ke jurang
+	# 🔻 Jatuh ke jurang
 	if global_position.y > 1000:
 		Game.playerHP -= 1
 		global_position = respawn_position
 		velocity = Vector2.ZERO
 
-	# ✅ Cek jika nyawa player habis
+	# ❤️ Habis nyawa
 	if Game.playerHP <= 0:
 		get_tree().change_scene_to_file("res://kehabisan_nyawa.tscn")
 		return
 
-	# Gravity
+	# 🔽 Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Jump
+	# 🔼 Lompat
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		anim.play("jump")
 		sfx_jump.play()
+		if not is_attacking:
+			anim.play("jump")
 
-	# Movement
+	# 🔁 Gerakan kiri kanan
 	var direction := Input.get_axis("ui_left", "ui_right")
-
 	var current_speed = SPEED
 	if Input.is_action_pressed("ui_shift"):
 		current_speed = RUN_SPEED
@@ -53,16 +55,28 @@ func _physics_process(delta: float) -> void:
 	elif direction == 1:
 		anim.flip_h = false
 
-	if direction:
-		velocity.x = direction * current_speed
-		if velocity.y == 0:
-			anim.play("run")
-	else:
-		if velocity.y == 0:
-			anim.play("idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.x = direction * current_speed
 
-	if velocity.y > 0:
-		anim.play("fall")
+	# ⚔️ Attack
+	if Input.is_action_just_pressed("attack") and not is_attacking:
+		is_attacking = true
+		anim.play("attack")
+		velocity.x = 0  # opsional: diam saat menyerang
+
+	# 🔁 Animasi gerak normal (jika tidak menyerang)
+	if not is_attacking:
+		if direction != 0:
+			if is_on_floor():
+				anim.play("run")
+		elif is_on_floor():
+			anim.play("idle")
+
+		if velocity.y > 0 and not is_on_floor():
+			anim.play("fall")
 
 	move_and_slide()
+
+# ✅ Reset is_attacking setelah animasi attack selesai
+func _on_AnimatedSprite2D_animation_finished():
+	if anim.animation == "attack":
+		is_attacking = false

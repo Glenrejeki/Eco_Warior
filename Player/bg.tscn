@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4nms6l8si3sq"]
+
+[ext_resource type="Script" uid="uid://b3lh2tydq6aeq" path="res://bg.gd" id="1_2blju"]
+[ext_resource type="Texture2D" uid="uid://btxrgsqnwx8e4" path="res://Assets/banjir-jakarta-24-februari-2023_169.jpeg" id="2_vm4b7"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_2blju")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(-3, -30)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1150, 0)
+
+[node name="Banjir-jakarta-24-februari-2023169" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(588, 357.5)
+scale = Vector2(0.958333, 0.960059)
+texture = ExtResource("2_vm4b7")

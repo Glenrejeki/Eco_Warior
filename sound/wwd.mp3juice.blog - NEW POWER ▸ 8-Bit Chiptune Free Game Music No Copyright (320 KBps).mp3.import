@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqp0rorri51sy"
+path="res://.godot/imported/wwd.mp3juice.blog - NEW POWER ▸ 8-Bit Chiptune Free Game Music No Copyright (320 KBps).mp3-6cf8c08d2b54196b721d2a1397437af4.mp3str"
+
+[deps]
+
+source_file="res://sound/wwd.mp3juice.blog - NEW POWER ▸ 8-Bit Chiptune Free Game Music No Copyright (320 KBps).mp3"
+dest_files=["res://.godot/imported/wwd.mp3juice.blog - NEW POWER ▸ 8-Bit Chiptune Free Game Music No Copyright (320 KBps).mp3-6cf8c08d2b54196b721d2a1397437af4.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

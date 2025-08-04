@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnpp5pycwcly2"]
+
+[ext_resource type="AudioStream" uid="uid://cjgo838n1rhhe" path="res://sound/wwd.mp3juice.blog - Kubbi - Up In My Jam NO COPYRIGHT 8-bit Music (320 KBps).mp3" id="1_3t2tx"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_3t2tx")
+autoplay = true

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ovoebcibekt"]
+
+[ext_resource type="Script" uid="uid://b2dexfapajtrq" path="res://kehabisan_nyawa.gd" id="1_mjvop"]
+[ext_resource type="AudioStream" uid="uid://8krqss7d77fk" path="res://sound/sfx_sad.mp3" id="2_riw2b"]
+
+[node name="kehabisan_nyawa" type="Node2D"]
+position = Vector2(0, 12)
+script = ExtResource("1_mjvop")
+
+[node name="balik_menu" type="Button" parent="."]
+offset_left = 404.0
+offset_top = 268.0
+offset_right = 708.0
+offset_bottom = 402.0
+text = "Kembali ke Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 402.0
+offset_top = 206.0
+offset_right = 710.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 30
+text = "HAHAHA Kamu Kalah"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_riw2b")
+autoplay = true
+
+[connection signal="pressed" from="balik_menu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="balik_menu" to="." method="_on_balik_menu_pressed"]

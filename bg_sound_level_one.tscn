@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://iwvaur6i1wy8"]
+
+[ext_resource type="AudioStream" uid="uid://dqp0rorri51sy" path="res://sound/wwd.mp3juice.blog - NEW POWER ▸ 8-Bit Chiptune Free Game Music No Copyright (320 KBps).mp3" id="1_0r0l6"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_0r0l6")
+autoplay = true

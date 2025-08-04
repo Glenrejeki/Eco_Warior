@@ -26,8 +26,6 @@ func _physics_process(delta: float) -> void:
 		print("Z ditekan, serang!")
 		is_attacking = true
 		anim.play("attack")
-
-		# Gunakan timer fallback jika animation_finished tidak terpanggil
 		await get_tree().create_timer(0.4).timeout
 		is_attacking = false
 
@@ -62,3 +60,9 @@ func _physics_process(delta: float) -> void:
 
 	# Apply movement
 	move_and_slide()
+
+	# Respawn jika jatuh ke jurang
+	if position.y > 1000:
+		Game.playerHP -= 1
+		position = respawn_position
+		velocity = Vector2.ZERO

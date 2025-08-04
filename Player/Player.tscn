@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://rkflp6fn5f0y" path="res://sound/wwd.mp3juice.blog - Video Game Jump Sound Effect (320 KBps).mp3" id="3_tok1r"]
 [ext_resource type="Texture2D" uid="uid://d0gfbr35oj2g8" path="res://Assets/char.png" id="4_6ysni"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vlldt"]
-radius = 26.6833
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8g4oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1rgi"]
 atlas = ExtResource("3_ddoul")
@@ -444,11 +443,11 @@ script = ExtResource("1_q3lat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(51, -3)
-shape = SubResource("CircleShape2D_vlldt")
+shape = SubResource("CapsuleShape2D_8g4oa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(51.5, -4.5)
-scale = Vector2(0.241176, 0.241228)
+position = Vector2(51, -4)
+scale = Vector2(0.123512, 0.124751)
 sprite_frames = SubResource("SpriteFrames_xu7fl")
 animation = &"run"
 flip_h = true

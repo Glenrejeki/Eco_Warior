@@ -44,13 +44,13 @@ func _on_timer_timeout() -> void:
 
 	if jenis_sampah == 0 and jumlah_kertas < MAKSIMAL_KERTAS:
 		var sampahkertasTemp = sampah_kertas.instantiate()
-		var posisi = cari_posisi_aman(10, 3150, 320, 450)
+		var posisi = cari_posisi_aman(10, 5000, 320, 450)
 		sampahkertasTemp.global_position = posisi
 		get_parent().add_child(sampahkertasTemp)
 		jumlah_kertas += 1
 	elif jenis_sampah == 1 and jumlah_kaleng < MAKSIMAL_KALENG:
 		var sampahkalengTemp = sampah_kaleng.instantiate()
-		var posisi = cari_posisi_aman(10, 3150, 320, 450)
+		var posisi = cari_posisi_aman(10, 5000, 320, 450)
 		sampahkalengTemp.global_position = posisi
 		get_parent().add_child(sampahkalengTemp)
 		jumlah_kaleng += 1

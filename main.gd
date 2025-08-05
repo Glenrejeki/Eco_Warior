@@ -13,4 +13,4 @@ func _on_quit_pressed() -> void:
 func _on_play_pressed() -> void:
 	Game.reset() # Reset data sebelum masuk world
 	Utils.saveGame()
-	get_tree().change_scene_to_file("res://world.tscn")
+	get_tree().change_scene_to_file("res://cut_scene.tscn")

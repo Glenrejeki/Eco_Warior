@@ -28,5 +28,5 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("2_riw2b")
 autoplay = true
 
-[connection signal="pressed" from="balik_menu" to="." method="_on_balik_menu_pressed"]
 [connection signal="pressed" from="balik_menu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="balik_menu" to="." method="_on_balik_menu_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7k7vj6s43oad"]
+
+[ext_resource type="Script" uid="uid://d3ab7v2t0mn7y" path="res://cut_scene.gd" id="1_we0jh"]
+[ext_resource type="VideoStream" uid="uid://bm48frt7op4f5" path="res://Assets/video-cutscene-intro-kxvdid.ogv" id="2_cn5lr"]
+
+[sub_resource type="Animation" id="Animation_cea7f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/UI/Panel/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cn5lr"]
+resource_name = "cut_scene_mulai"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/UI/Panel/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Jalan Sudirman, ikon kemajuan ibu kota, kini tak mampu melindungi dirinya sendiri. 
+Di balik gedung-gedung tinggi, tumpukan sampah menyumbat drainase kota. 
+Setiap menit terbuang berarti genangan akan semakin naik. Waktu terus berjalan. Jakarta tidak menunggu"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoStreamPlayer/UI/Panel/Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cea7f"]
+_data = {
+&"RESET": SubResource("Animation_cea7f"),
+&"cut_scene_mulai": SubResource("Animation_cn5lr")
+}
+
+[node name="CutScene" type="Node2D"]
+position = Vector2(7, -2)
+script = ExtResource("1_we0jh")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -985.0
+offset_top = -540.0
+offset_right = 985.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_cn5lr")
+
+[node name="UI" type="CanvasLayer" parent="VideoStreamPlayer"]
+
+[node name="Panel" type="Panel" parent="VideoStreamPlayer/UI"]
+anchors_preset = -1
+anchor_right = 0.158
+anchor_bottom = 0.031
+offset_left = 5.0
+offset_top = 517.0
+offset_right = 968.984
+offset_bottom = 625.912
+
+[node name="Label" type="Label" parent="VideoStreamPlayer/UI/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 1144.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 20
+text = "Jalan Sudirman, ikon kemajuan ibu kota, kini tak mampu melindungi dirinya sendiri. 
+Di balik gedung-gedung tinggi, tumpukan sampah menyumbat drainase kota. 
+Setiap menit terbuang berarti genangan akan semakin naik. Waktu terus berjalan. Jakarta tidak menunggu"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(5, 13)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 434.0
+offset_top = 90.0
+offset_right = 574.0
+offset_bottom = 168.0
+text = "Mulai Permainan"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cea7f")
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

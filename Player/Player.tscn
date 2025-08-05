@@ -450,6 +450,7 @@ position = Vector2(51, -4)
 scale = Vector2(0.123512, 0.124751)
 sprite_frames = SubResource("SpriteFrames_xu7fl")
 animation = &"run"
+frame = 1
 flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -64,5 +64,10 @@ func _physics_process(delta: float) -> void:
 	# Respawn jika jatuh ke jurang
 	if position.y > 1000:
 		Game.playerHP -= 1
+		
+		if Game.playerHP <= 0:
+			get_tree().change_scene_to_file("res://kehabisan_nyawa.tscn")
+			return # supaya kode setelahnya gak jalan
+			
 		position = respawn_position
 		velocity = Vector2.ZERO

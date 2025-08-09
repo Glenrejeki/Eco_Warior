@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://nnq5yp2hpktx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1137.0
+offset_bottom = 515.0
+
+[node name="UI" type="CanvasLayer" parent="VideoStreamPlayer"]
+
+[node name="Panel" type="Panel" parent="VideoStreamPlayer/UI"]
+anchors_preset = -1
+anchor_right = 0.158
+anchor_bottom = 0.031
+offset_left = 5.0
+offset_top = 517.0
+offset_right = 968.984
+offset_bottom = 625.912
+
+[node name="Label" type="Label" parent="VideoStreamPlayer/UI/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 1144.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 20
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 323)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 992.0
+offset_top = 439.0
+offset_right = 1142.0
+offset_bottom = 505.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

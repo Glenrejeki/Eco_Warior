@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 1
+
 var respawn_position : Vector2
 const SPEED = 300.0
 const RUN_SPEED = 900.0

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5dc8wtx3lq8b"]
+
+[ext_resource type="Script" uid="uid://8kay7u4pmwmw" path="res://Kumpulan Sampah/sampah_plastik.gd" id="1_sl0gb"]
+[ext_resource type="Texture2D" uid="uid://rj20on1cyr1r" path="res://Assets/Bangunan.png" id="2_ux4bg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu1qg"]
+atlas = ExtResource("2_ux4bg")
+region = Rect2(284, 0, 122, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xr5p6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu1qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sm5r3"]
+radius = 6.08276
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_sl0gb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29.25, 12)
+scale = Vector2(0.159836, 0.1875)
+sprite_frames = SubResource("SpriteFrames_xr5p6")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 13)
+shape = SubResource("CircleShape2D_sm5r3")

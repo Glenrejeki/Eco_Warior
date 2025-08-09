@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4broqle4ewmd"]
+[gd_scene load_steps=13 format=3 uid="uid://c4broqle4ewmd"]
 
 [ext_resource type="PackedScene" uid="uid://ci6touth02w5t" path="res://Player/Player.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://o60ipmu5p2f8" path="res://world_1.gd" id="1_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://dmryt6tlmb75b" path="res://Assets/Semua Koleksi.png" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://d1c54d8rur04g" path="res://BG2.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://iwvaur6i1wy8" path="res://bg_sound_level_one.tscn" id="4_aqk2v"]
@@ -909,6 +910,7 @@ func _process(delta: float) -> void:
 "
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_gbfbk")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(3, 1)
@@ -922,6 +924,7 @@ position = Vector2(478, 390)
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_fj7yv")]
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("4_aqk2v")]
+volume_db = -25.221
 
 [node name="UI" type="CanvasLayer" parent="."]
 

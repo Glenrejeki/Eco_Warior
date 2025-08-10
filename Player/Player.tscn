@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ci6touth02w5t"]
+[gd_scene load_steps=45 format=3 uid="uid://ci6touth02w5t"]
 
 [ext_resource type="Script" uid="uid://b574n07i11i0e" path="res://Player/player.gd" id="1_q3lat"]
 [ext_resource type="Texture2D" uid="uid://rnbrmqs4jw4o" path="res://Assets/death.png" id="3_8g4oa"]
@@ -252,7 +252,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_78fhc"]
 resource_name = "attack"
-length = 10.0
+length = 0.5
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -272,7 +273,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.866667),
+"times": PackedFloat32Array(0, 0.2, 0.366667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
@@ -438,6 +439,9 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q3lat"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ysni"]
+radius = 14.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q3lat")
 
@@ -468,3 +472,11 @@ tree_root = SubResource("AnimationNodeStateMachine_q3lat")
 
 [node name="sfx_jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_tok1r")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(51, -2)
+shape = SubResource("CapsuleShape2D_6ysni")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

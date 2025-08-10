@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmagn1y6victl"]
+[gd_scene load_steps=6 format=3 uid="uid://ckrmci2w7yjpu"]
 
-[ext_resource type="Script" uid="uid://q83i214qpyvg" path="res://cut_scene_level_2.gd" id="1_rhg5i"]
-[ext_resource type="VideoStream" uid="uid://bpgy3ju7ho3g1" path="res://Assets/HEBOH-MONAS-KOTOR-BANGET-_-BIKIN-GREGETAN_-Elfajar-Net-_360p_-h264_-_1_.ogv" id="2_2mmof"]
+[ext_resource type="Script" uid="uid://m6hdxt7354ul" path="res://cut_scene_level_3.gd" id="1_2sva4"]
+[ext_resource type="VideoStream" uid="uid://15n5lx8g6w6d" path="res://Assets/cutscene-lvl-3.ogv" id="1_6vo3n"]
 
-[sub_resource type="Animation" id="Animation_rhg5i"]
-resource_name = "new_animation"
+[sub_resource type="Animation" id="Animation_8irp4"]
+resource_name = "scene_level_3"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_2mmof"]
+[sub_resource type="Animation" id="Animation_fl0ky"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,25 +30,22 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddgy1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mf3wy"]
 _data = {
-&"RESET": SubResource("Animation_2mmof"),
-&"new_animation": SubResource("Animation_rhg5i")
+&"RESET": SubResource("Animation_fl0ky"),
+&"scene_level_3": SubResource("Animation_8irp4")
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_rhg5i")
+script = ExtResource("1_2sva4")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-offset_left = 229.0
-offset_top = 81.0
-offset_right = 8682.0
-offset_bottom = 5478.0
-stream = ExtResource("2_2mmof")
-autoplay = true
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_6vo3n")
 
 [node name="UI" type="CanvasLayer" parent="VideoStreamPlayer"]
 
@@ -68,26 +65,24 @@ offset_top = 9.0
 offset_right = 1144.0
 offset_bottom = 126.0
 theme_override_font_sizes/font_size = 20
-text = "Monas, lambang kejayaan bangsa, kini dipadati wisatawan dan sampah. Kertas berserakan,
-botol-botol mengapung di kolam, dan anak-anak bermain di tengah kekacauan tak terlihat.
-Edukasi tidak bisa menunggu sekolah. Ini saatnya mengingatkan mereka — bukan dengan
-ceramah, tapi dengan tindakan."
-visible_characters = 0
-visible_ratio = 0.0
+text = "Gedung DPR RI, tempat lahirnya kebijakan, kini tak luput dari masalah sampah. Halaman
+gedung penuh plastik, botol berserakan di sekitar pagar, dan drainase tersumbat. Perubahan
+kebijakan memang penting, tapi tindakan nyata tidak bisa menunggu. Semua mata tertuju
+padamu."
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(575, 323)
+position = Vector2(577, 315)
 
 [node name="Button" type="Button" parent="."]
-offset_left = 992.0
-offset_top = 439.0
-offset_right = 1142.0
-offset_bottom = 505.0
+offset_left = 1006.0
+offset_top = 420.0
+offset_right = 1126.0
+offset_bottom = 498.0
 text = "Mulai"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_ddgy1")
+&"": SubResource("AnimationLibrary_mf3wy")
 }
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

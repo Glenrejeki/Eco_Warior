@@ -1,20 +1,17 @@
 extends Node2D
 
-# Preload scene sampah
 var sampah_kertas = preload("res://Kumpulan Sampah/sampah_kertas.tscn")
-var sampah_plastik = preload("res://Kumpulan Sampah/sampah_plastik.tscn")
+var sampah_kaleng = preload("res://Kumpulan Sampah/sampah_kaleng.tscn") # ✅ Tambah preload kaleng
 
 var rng = RandomNumberGenerator.new()
 
-# Jumlah spawn
-var jumlah_kertas = 0
-var jumlah_plastik = 0
+var jumlah_kertas = 0 # ✅ jumlah spesifik untuk kertas
+var jumlah_kaleng = 0 # ✅ jumlah spesifik untuk kaleng
 
-# Batas maksimal
-const MAKSIMAL_KERTAS = 100
-const MAKSIMAL_PLASTIK = 100
+const MAKSIMAL_KERTAS = 60
+const MAKSIMAL_KALENG = 60
 
-# Cari posisi aman supaya tidak tabrakan
+# ✅ Fungsi cari posisi aman (hindari tilemap / body lain)
 func cari_posisi_aman(min_x: int, max_x: int, min_y: int, max_y: int) -> Vector2:
 	var max_coba = 10
 	var space_state = get_world_2d().direct_space_state
@@ -31,28 +28,29 @@ func cari_posisi_aman(min_x: int, max_x: int, min_y: int, max_y: int) -> Vector2
 
 		var result = space_state.intersect_point(query)
 
-		if result.is_empty():
+		if result.is_empty(): # ✅ posisi aman
 			return posisi
 
-	return Vector2(min_x, min_y) # fallback
+	# Kalau gagal 10x, pakai default
+	return Vector2(min_x, min_y)
 
-# Dipanggil tiap timer timeout
 func _on_timer_timeout() -> void:
-	if jumlah_kertas >= MAKSIMAL_KERTAS and jumlah_plastik >= MAKSIMAL_PLASTIK:
+	if jumlah_kertas >= MAKSIMAL_KERTAS and jumlah_kaleng >= MAKSIMAL_KALENG:
 		$Timer.stop()
 		return
 
-	var jenis_sampah = rng.randi_range(0, 1) # 0 = plastik, 1 = kertas
+	# ✅ Tentukan jenis sampah yang akan di-spawn (acak)
+	var jenis_sampah = rng.randi_range(0, 1) # 0 = kertas, 1 = kaleng
 
-	if jenis_sampah == 0 and jumlah_plastik < MAKSIMAL_PLASTIK:
-		var plastikTemp = sampah_plastik.instantiate()
-		var posisi = cari_posisi_aman(0, 5000, 250, 300) # ✅ Y dari 250-300
-		plastikTemp.global_position = posisi
-		get_parent().add_child(plastikTemp)
-		jumlah_plastik += 1
-	elif jenis_sampah == 1 and jumlah_kertas < MAKSIMAL_KERTAS:
-		var kertasTemp = sampah_kertas.instantiate()
-		var posisi = cari_posisi_aman(0, 5000, 250, 300) # ✅ Y dari 250-300
-		kertasTemp.global_position = posisi
-		get_parent().add_child(kertasTemp)
+	if jenis_sampah == 0 and jumlah_kertas < MAKSIMAL_KERTAS:
+		var sampahkertasTemp = sampah_kertas.instantiate()
+		var posisi = cari_posisi_aman(10, 5000, 320, 450)
+		sampahkertasTemp.global_position = posisi
+		get_parent().add_child(sampahkertasTemp)
 		jumlah_kertas += 1
+	elif jenis_sampah == 1 and jumlah_kaleng < MAKSIMAL_KALENG:
+		var sampahkalengTemp = sampah_kaleng.instantiate()
+		var posisi = cari_posisi_aman(10, 5000, 320, 450)
+		sampahkalengTemp.global_position = posisi
+		get_parent().add_child(sampahkalengTemp)
+		jumlah_kaleng += 1

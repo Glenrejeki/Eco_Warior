@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b073cmjfgds1t"]
+[gd_scene load_steps=4 format=3 uid="uid://b073cmjfgds1t"]
 
+[ext_resource type="Script" uid="uid://vaovnxshijof" path="res://pintu_ke_level_tiga.gd" id="1_0fu0w"]
 [ext_resource type="Texture2D" uid="uid://b287h31ykitbd" path="res://Assets/pintu.png" id="1_0g3xw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0fu0w"]
 size = Vector2(31, 62)
 
 [node name="Area2D" type="Area2D"]
+script = ExtResource("1_0fu0w")
 
 [node name="Pintu" type="Sprite2D" parent="."]
 position = Vector2(445, 253.875)

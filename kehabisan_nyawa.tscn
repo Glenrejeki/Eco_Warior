@@ -1,32 +1,93 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ovoebcibekt"]
+[gd_scene load_steps=7 format=3 uid="uid://c3ovoebcibekt"]
 
 [ext_resource type="Script" uid="uid://b2dexfapajtrq" path="res://kehabisan_nyawa.gd" id="1_mjvop"]
+[ext_resource type="VideoStream" uid="uid://bmxpk6sjdhp8b" path="res://Assets/Cutscene-banjir.ogv" id="2_acrri"]
 [ext_resource type="AudioStream" uid="uid://8krqss7d77fk" path="res://sound/sfx_sad.mp3" id="2_riw2b"]
+
+[sub_resource type="Animation" id="Animation_riw2b"]
+resource_name = "mulai_animasi"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/UI/Panel/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_acrri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer/UI/Panel/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_taqbg"]
+_data = {
+&"RESET": SubResource("Animation_acrri"),
+&"mulai_animasi": SubResource("Animation_riw2b")
+}
 
 [node name="kehabisan_nyawa" type="Node2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_mjvop")
 
-[node name="balik_menu" type="Button" parent="."]
-offset_left = 404.0
-offset_top = 268.0
-offset_right = 708.0
-offset_bottom = 402.0
-text = "Kembali ke Menu"
-metadata/_edit_use_anchors_ = true
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_acrri")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 402.0
-offset_top = 206.0
-offset_right = 710.0
-offset_bottom = 273.0
-theme_override_font_sizes/font_size = 30
-text = "HAHAHA Kamu Kalah"
+[node name="UI" type="CanvasLayer" parent="VideoStreamPlayer"]
+
+[node name="Panel" type="Panel" parent="VideoStreamPlayer/UI"]
+anchors_preset = -1
+anchor_right = 0.158
+anchor_bottom = 0.031
+offset_left = 5.0
+offset_top = 517.0
+offset_right = 968.984
+offset_bottom = 625.912
+
+[node name="Label" type="Label" parent="VideoStreamPlayer/UI/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 1144.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 20
+text = "Kesadaran belum cukup, usaha terhenti, dan Jakarta pun tenggelam."
+
+[node name="balik_menu" type="Button" parent="."]
+offset_left = 834.0
+offset_top = 345.0
+offset_right = 1138.0
+offset_bottom = 479.0
+text = "Kembali ke Menu"
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_riw2b")
 autoplay = true
 
-[connection signal="pressed" from="balik_menu" to="." method="_on_balik_menu_pressed"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(583, 322)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_taqbg")
+}
+
 [connection signal="pressed" from="balik_menu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="balik_menu" to="." method="_on_balik_menu_pressed"]

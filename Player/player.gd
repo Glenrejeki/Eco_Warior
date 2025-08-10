@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var respawn_position : Vector2
 const SPEED = 300.0
 const RUN_SPEED = 900.0
